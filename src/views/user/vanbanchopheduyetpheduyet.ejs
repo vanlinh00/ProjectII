@@ -1,0 +1,100 @@
+<!-- Main content -->
+
+<% extend("../mainuser.ejs") %>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6  mt-4">
+                    <p class="lead">Chi Tiết Văn Bản</p>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tr>
+                          <th style="width:50%">Tên văn bản:</th>
+                          <td><%=fileVanbanDen.ten_vb%></td>
+                        </tr>
+                        <tr>
+                          <th>Mã cơ quan:</th>
+                          <td><%=fileVanbanDen.ma_co_quan%></td>
+                        </tr>
+                        <tr>
+                          <th>Số và kí hiệu:</th>
+                          <td><%=fileVanbanDen.so_ki_hieu%></td>
+                        </tr>
+                        <tr>
+                          <th>Người gửi đến:</th>
+                          <td><%=fileVanbanDen.nguoi_gui_den%></td>
+                        </tr>
+                        <tr>
+                            <th>Nơi gửi đến:</th>
+                            <td><%=fileVanbanDen.noi_gui_den%></td>
+                        </tr>
+                        <tr>
+                            <th>Ngày gửi đến:</th>
+                            <td><%=fileVanbanDen.thoi_gian_nhan%></td>
+                        </tr>
+                        <tr>
+                            <th>Mở văn bản:</th>
+                            <td><a href="/vanbanden/vanbanchopheduyet/xemvanban?id=<%=fileVanbanDen.id%>">Xem Văn Bản</a></td>
+                        </tr>
+                        
+                      </table>
+                    </div>
+                    <div class="row mt-4 ml-5">
+                        <div class="col-6 "> 
+                          <a class="btn btn-primary btn-danger"  href="/vanbanden/vanbanchopheduyet/pheduyetNO?id=<%=fileVanbanDen.id%>" >
+                            
+                            Không Duyệt
+                        </a>
+                       
+                        </div>
+                        <div class="col-6"> 
+                              <a class="btn btn-primary btn-info "  href="/vanbanden/vanbanchopheduyet/pheduyetYes?id=<%=fileVanbanDen.id%>" >
+                                Phê Duyệt
+                            </a>
+                           
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-6 mt-4">
+                    <div class="timeline">
+
+                        <div class="time-label">
+                          <span class="bg-red">Lịch Sử Văn Bản</span>
+                        </div>
+                        <% if(allXyLyVanBan.length!=0){ var i=1; allXyLyVanBan.forEach(function(data){ %>
+                          <div>
+                            <i class="fas  fa-user bg-green"></i>
+                            <div class="timeline-item">
+                              <span class="time"><i class="fas fa-clock"></i>     <%=data.thoi_gian %></span>
+                              <h3 class="timeline-header"><a href="#">  <%=data.name_user %></a> <%=data.chuc_vu_user %></h3>
+                          
+                              <% var hanhdong = data.hanhdong; %> 
+                              <% if ( hanhdong.toString() == "yes" ) { %>
+                                <div class="timeline-body">
+                                  Đã phê duyệt
+                                  </div>   
+                                <%} else { %> 
+                              <div class="timeline-body">
+                                Không phê duyệt
+                                </div>
+                                <% } %>
+                            </div>
+                          </div>
+                          <% i++; }) %>
+                            <% } else{ %>            
+                              <% } %>
+                        <div>
+                          <i class="fas fa-clock bg-gray"></i>
+                        </div>
+                      </div>
+
+                  </div>
+  
+                <!-- /.col -->
+       
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->

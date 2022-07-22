@@ -1,0 +1,150 @@
+<% extend("../mainuser.ejs") %>
+
+  <script>
+    var getTest = "<%= mess  %>";
+    if (getTest.length != 0) {
+      $(document).ready(function () {
+        $("#myModal").modal('show');
+
+      });
+    }
+
+
+
+    $(document).ready(function () {
+      $(".delete-vbden").click(function () {
+
+        if (!confirm('Bạn có muốn xóa văn bản này không?')) {
+          return
+        }
+        let id = $(this).data('deletedata');
+        let node = this;
+        //alert(id);
+        $.ajax({
+          method: 'POST',
+          url: `${window.location.origin}/vanbanden/xoavanbanden`,
+          data: { id: id },
+          success: function (data) {
+            node.closest("tr").remove();
+            alertify.success('Delete succeed!');
+          },
+          error: function (err) {
+            alert(id);
+          }
+        });
+      });
+
+    });
+  </script>
+
+
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">VĂN BẢN ĐANG CHỜ PHÂN LOẠI</h3>
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>TÊN VĂN BẢN</th>
+                    <th>NGƯỜI GỬI ĐẾN</th>
+                    <th>NƠI GỬI ĐẾN</th>
+                    <th>NGÀY GỬI ĐẾN</th>
+                    <th>PHÂN LOẠI</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <% if(alldatavb.length!=0){ var i=1; alldatavb.forEach(function(data){ %>
+                    <tr>
+                      <td>
+                        <%=i%>
+                      </td>
+                      <td>
+                        <%=data.ten_vb %>
+                      </td>
+                      <td>
+                        <%=data.nguoi_gui_den %>
+                      </td>
+                      <td>
+                        <%=data.noi_gui_den %>
+                      </td>
+                      <td>
+                        <%=data.ngayguiden %>
+                      </td>
+                      <!-- <td>
+                        <a href="/vanbanden/vanbanchophanloai/phanloai?id=<%=data.id%>" class="edit" title="Edit"
+                          data-toggle="tooltip"><i class="material-icons"></i>Xem và phân loại</a>
+
+                      </td> -->
+
+
+
+                      <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" href="/vanbanden/vanbanchophanloai/phanloai?id=<%=data.id%>">
+                          <i class="fas fa-folder">
+                          </i>
+                          Phân Lại
+                        </a>
+
+                        <a class="btn btn-danger btn-sm delete-vbden" data-deletedata="<%= data.id %>" href="#">
+                          <i class="fas fa-trash">
+                          </i>
+                          Xóa Bỏ
+                        </a>
+
+
+                      </td>
+
+                    </tr>
+                    <% i++; }) %>
+                      <% } else{ %>
+                        <tr>
+
+                        </tr>
+                        <% } %>
+
+                </tbody>
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <div id="myModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">THÔNG BÁO</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <%= mess %>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+          <!-- <button type="button" class="btn btn-primary">Save</button> -->
+        </div>
+      </div>
+    </div>
+  </div>

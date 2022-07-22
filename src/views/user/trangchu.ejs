@@ -1,0 +1,115 @@
+<% extend("../mainuser.ejs") %>
+  <section class="content">
+    <div class="container-fluid ">
+      <div class="row m-1">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3><%= data.countAllText %></h3>
+
+              <p>Tổng số lượng văn bản</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3><%= data.countAllTextDaDuyet %></h3>
+
+              <p>Số văn bản đã xử lý</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3><%= data.countAllUserService %></h3>
+              <p>Số cán bộ</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3><%= data.countAllRoom %></h3>
+
+              <p>Số phòng ban</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <div class="row ">
+
+        <div class="col-6 chart trangchuchart">
+          <p1 class="textvbd">VĂN BẢN ĐẾN</p1>
+          <canvas id="myChart" width="300" height="200"></canvas>
+        </div>
+        <div class="col-6 chart trangchuchart">
+          <p1 class="textvbd">VĂN BẢN ĐI</p1>
+          <canvas id="myChartf" width="300" height="200"></canvas>
+        </div>
+        </div>
+  </section>
+  <script>
+var vbDeChuaDuyet = "<%= lengthVBDChuaDuyet  %>";
+var vbDenDaDuyet = "<%= lengthVBDaDuyet  %>";
+console.log(vbDeChuaDuyet);
+console.log(vbDenDaDuyet);
+let myDoughnutChart = document.getElementById("myChart").getContext('2d');
+
+let chart1 = new Chart(myDoughnutChart, {
+    type: 'doughnut',
+    data: {
+        labels: ['VĂN BẢN ĐÃ PHÊ DUYỆT', 'VĂN BẢN CHƯA PHÊ DUYỆT'],
+        datasets: [ {
+            data: [vbDenDaDuyet, vbDeChuaDuyet],
+            backgroundColor: ['#49A9EA', '#36CAAB']
+        }]
+    },
+    // options: {
+    //     title: {
+    //         text: "VĂN BẢN ĐẾN",
+    //         display: true
+    //     }
+    // }
+});
+let myDoughnutChart2 = document.getElementById("myChartf").getContext('2d');
+
+var vbdChuPheDuyet=100;
+var vbddaPheDuyet=50;
+let chart12 = new Chart(myDoughnutChart2, {
+    type: 'doughnut',
+    data: {
+        labels: ['VĂN BẢN ĐÃ PHÊ DUYỆT', 'VĂN BẢN CHƯA PHÊ DUYỆT'],
+        datasets: [ {
+            data: [vbddaPheDuyet, vbdChuPheDuyet],
+            backgroundColor: ['#49A9EA', '#36CAAB']
+        }]
+    },
+});
+
+  </script>
