@@ -315,6 +315,23 @@ let deleteIdXulyVB = (id)=>{
 
 }
 
+let getVanBanDenByName = async (nameText) =>{
+    return new Promise((async (resolve, reject) => {
+        try {
+            let file = await fileModel.getVanBanDenByName(nameText);
+            if (file!=null) {
+                resolve(file);
+            } else {
+                resolve(null);
+            }
+
+        } catch (e) {
+            resolve(null);
+        }
+    }));
+
+}
+
 module.exports = {
     checkFileById: checkFileById,
     addFileText: addFileText,
@@ -334,4 +351,5 @@ module.exports = {
     getAllUserDaXuLyVanBanByIdVanBanWithChucVu:getAllUserDaXuLyVanBanByIdVanBanWithChucVu,
     getAllUserDaXuLyVanBanByIdVanBan : getAllUserDaXuLyVanBanByIdVanBan,
     deleteIdXulyVB:deleteIdXulyVB,
+    getVanBanDenByName:getVanBanDenByName,
 }

@@ -4,11 +4,12 @@ import homeController from "../controllers/homeController";
 import vanbandenController from "../controllers/vanbandenController";
 import adminController from "../controllers/adminController";
 import roomController from "../controllers/roomController";
+import chatController from "../controllers/chatController";
 
 
 
 var multer = require('multer');
-const DIR = './uploads';
+const DIR = './src/public/uploads';
 let router = express.Router();
 const path = require('path');
 
@@ -27,9 +28,13 @@ initializePassport(
   id => users.find(user => user.id === id)
 )
 
-
-
 let initWebRoutes = (app) => {
+
+  var server = require("http").createServer(app);
+  const { Server } = require("socket.io")
+  const io = new Server(server)
+
+  chatController.initIO(io);
 
   app.use(flash())
   app.use(session({
@@ -41,10 +46,6 @@ let initWebRoutes = (app) => {
   app.use(passport.session())
   app.use(methodOverride('_method'))
   app.locals.error = null;
-
-
-
-
 
   app.get('/login', checkNotAuthenticated, homeController.login)
 
@@ -127,17 +128,46 @@ let initWebRoutes = (app) => {
 
   router.get('/vanbanden/vanbandapheduyet', checkAuthenticated, vanbandenController.vanBanDaPheDuyet);
 
+  router.get('/timkiemvanban', checkAuthenticated, vanbandenController.timkiemvanban);
+  router.post('/timkiemvanbanpost', checkAuthenticated, vanbandenController.postTimKiemVanBan)
+
+
+  router.get('/chat', checkAuthenticated, chatController.chat)
+
+
+  router.get('/profile', checkAuthenticated, homeController.getInforUser)
+
+
+  router.post('/editInforUser', checkAuthenticated, homeController.postEditUser);
+
+
+
+
+
   /* quản lý phòng ban*/
-  router.get('/phongban/danhsachphongban',checkAuthenticated, roomController.danhSachPhongBan);
-  router.post('/phongban/xoaphongban',checkAuthenticated, roomController.xoaPhongBan);
-  router.post('/phongban/themphongban',checkAuthenticated, roomController.themPhongBan);
+  router.get('/phongban/danhsachphongban', checkAuthenticated, roomController.danhSachPhongBan);
+  router.post('/phongban/xoaphongban', checkAuthenticated, roomController.xoaPhongBan);
+  router.post('/phongban/themphongban', checkAuthenticated, roomController.themPhongBan);
 
-  router.get('/phongban/xemphongban',checkAuthenticated, roomController.xemDanhSachUerPhongBan);
-  router.post('/phongban/themuservaophong',checkAuthenticated, roomController.themUserVaoPhong);
-  router.post('/phongban/xoauser',checkAuthenticated, roomController.xoaUser);
+  router.get('/phongban/xemphongban', checkAuthenticated, roomController.xemDanhSachUerPhongBan);
+  router.post('/phongban/themuservaophong', checkAuthenticated, roomController.themUserVaoPhong);
+
+
+  router.post('/phongban/xoauser', checkAuthenticated, roomController.xoaUser);
+  
+  
+  router.get('/phongban/chinhsuaphongban', checkAuthenticated, roomController.chinhSuaPhongBan);
+
+  router.post('/phongban/chinhsuaphongbanpost', checkAuthenticated, roomController.chinhsuaphongbanpost);
  
-  router.get('/phongban/edituserphong',roomController.editUserPhong);
 
+
+  router.get('/phongban/edituserphong', roomController.editUserPhong);
+
+  router.get('/editInforUserForAdmin', checkAuthenticated, roomController.getEditInforUserAdmin);
+
+
+  router.post('/postEditInforUserForAmin', checkAuthenticated, roomController.postEditInforUserAdmin);
 
 
   /* phần admin */
@@ -145,10 +175,19 @@ let initWebRoutes = (app) => {
   router.get('/admin', adminController.admin);
   router.get('/admin/getalluser', adminController.admingetalluser);
   router.get('/admin/users/edit', adminController.adminedituser);
+
+
   router.get('/admin/users/view', adminController.adminviewuer);
   router.get('/admin/users/delete', adminController.admindeleteuser);
 
+  server.listen(8081, () => {
+    console.log("Backend Nodejs is runing on the port : " + 8081)
+  })
+
+
   return app.use("/", router);
+
+
 
 }
 

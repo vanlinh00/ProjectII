@@ -52,7 +52,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <a href="/phongban/danhsachphongban" class="btn btn-primary btnComeBack">Quay lại</a>
+                    <!-- <a href="/phongban/danhsachphongban" class="btn btn-primary btnComeBack">Quay lại</a> -->
                     <div class="card">
 
                         <div class="card-header">
@@ -97,17 +97,15 @@
                                                 <%=data.chuc_vu %>
                                             </td>
                                             <td class="project-actions text-right">
-                                                <a class="btn btn-primary btn-sm" href="/phongban/themphongban">
-                                                    <i class="fas fa-folder">
-                                                    </i>
-                                                    View
-                                                </a>
-                                                <a id="editUser<%=data.id%>" class="btn btn-info btn-sm">
+                                                <a id="editUser<%=data.id%>"
+                                                    href="/editInforUserForAdmin/?id=<%=data.id%>"
+                                                    class="btn btn-info btn-sm">
                                                     <i class=" fas fa-pencil-alt">
                                                     </i>
                                                     Edit
                                                 </a>
-                                                <a class="btn btn-danger btn-sm delete-user"  data-deletedata="<%= data.id %> href="#">
+                                                <a class="btn btn-danger btn-sm delete-user"
+                                                    data-deletedata="<%= data.id %> href=" #">
                                                     <i class="fas fa-trash">
                                                     </i>
                                                     Delete
@@ -165,15 +163,15 @@
                             <div class="row mt-4">
                                 <div class="col ">
                                     <h3 class="card-title">Email</h3>
-                                    <input type="text" class="form-control" id="namefiletext"
-                                        placeholder="Nhập Email" name="email">
+                                    <input type="text" class="form-control" id="namefiletext" placeholder="Nhập Email"
+                                        name="email">
                                 </div>
                                 <div class="col">
                                     <h3 class="card-title">Mật khẩu</h3>
                                     <input type="text" class="form-control" placeholder="Nhập mật khẩu" name="password">
                                 </div>
                             </div>
-                            
+
                             <div class="row mt-4">
                                 <div class="col mt-1">
                                     <h3 class="card-title">Ngày Sinh</h3>

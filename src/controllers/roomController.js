@@ -110,7 +110,7 @@ let editUserPhong = async (req, res) => {
 let xoaPhongBan = async (req, res) => {
   try {
     let deleterom = await roomService.deleteRoom(req.body.id);
-    let deletealluser= await UserService.deleteAllUser(req.body.id);
+    let deletealluser = await UserService.deleteAllUser(req.body.id);
     return res.status(200).json({
       'message': 'success'
     })
@@ -123,7 +123,7 @@ let xoaPhongBan = async (req, res) => {
 }
 let xoaUser = async (req, res) => {
   try {
-    let deletealluser= await UserService.deleteUser(req.body.id);
+    let deletealluser = await UserService.deleteUser(req.body.id);
     return res.status(200).json({
       'message': 'success'
     })
@@ -134,6 +134,51 @@ let xoaUser = async (req, res) => {
   }
 
 }
+
+//edit the infor for user by amdin
+
+let getEditInforUserAdmin = async (req, res) => {
+
+
+  var userInfor = await UserService.checkbyid(req.query.id);
+
+  res.render("room/edituser", { user: req.user, userInfor });
+}
+
+let postEditInforUserAdmin = async (req, res) => {
+  console.log("nhung thu can edit");
+  console.log(req.body);
+
+  var userInforUpdate = await UserService.editInforUserByIdForAdmin(req.body, req.query.id);
+  var userInfor = await UserService.checkbyid(req.query.id);
+  var message = "";
+  var idPhongBan = userInfor.id_phong_ban;
+  var getUserByIdRoom = await roomService.getUserByIdRoom(idPhongBan);
+
+  res.render('room/listuserInRoom.ejs', { idPhongBan, getUserByIdRoom, user: req.user, message })
+
+}
+
+let chinhSuaPhongBan = async (req, res) => {
+
+  var room = await roomService.getRoomById(req.query.id);
+
+  res.render("room/editRoom", { user: req.user, room });
+
+}
+
+let chinhsuaphongbanpost = async (req, res) => {
+
+  console.log(req.body);
+  console.log(req.query.id);
+
+  var roomUpdate = await roomService.editRoomByid(req.body, req.query.id);
+
+ // req.flash('messages', "");
+  res.redirect("/phongban/danhsachphongban");
+}
+
+
 module.exports = {
   danhSachPhongBan: danhSachPhongBan,
   themPhongBan: themPhongBan,
@@ -141,5 +186,9 @@ module.exports = {
   themUserVaoPhong: themUserVaoPhong,
   editUserPhong: editUserPhong,
   xoaPhongBan: xoaPhongBan,
-  xoaUser:xoaUser,
+  xoaUser: xoaUser,
+  getEditInforUserAdmin: getEditInforUserAdmin,
+  postEditInforUserAdmin: postEditInforUserAdmin,
+  chinhSuaPhongBan: chinhSuaPhongBan,
+  chinhsuaphongbanpost: chinhsuaphongbanpost,
 }

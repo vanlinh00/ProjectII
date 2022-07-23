@@ -1,0 +1,77 @@
+<% extend("../mainuser.ejs") %>
+
+  <style>
+    .bs-example {
+      margin: 20px;
+    }
+  </style>
+
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Chỉnh sửa thông tin phòng ban</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Quản lý phòng ban</a></li>
+            <li class="breadcrumb-item"><a href="#">Chỉnh sửa thông tin phòng ban</a></li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card card-danger edituserclass">
+        <div class="card card-danger">
+          <div class="card-header ">
+              <h3 class="card-title  ">Chỉnh Sửa Thông Tin Phòng Ban</h3>
+          </div>
+          <div class="card-body">
+              <form role="form" method="post" action="/phongban/chinhsuaphongbanpost?id=<%=room.id%>">
+                  <div class="row mt-4">
+                      <div class="col">
+                          <h3 class="card-title">Mã Phòng</h3>
+                          <input type="text" class="form-control" id="namefiletext"
+                              placeholder="Nhập Mã phòng" name="ma_phong" value="<%=room.ma_phong %>">
+                      </div>
+                      <div class="col">
+                          <h3 class="card-title">Tên Phòng</h3>
+                          <input type="text" class="form-control" placeholder="Nhập tên phòng"
+                              name="ten_phong" value="<%=room.ten_phong %>">
+                      </div>
+                  </div>
+                  <div class="row mt-4">
+                      <div class="col">
+                          <h3 class="card-title">Số Cán Bộ</h3>
+                          <input type="text" class="form-control" placeholder="Nhập số cán bộ"
+                              name="so_can_bo" value="<%=room.so_can_bo %>">
+                      </div>
+                      <div class="col">
+                          <h3 class="card-title">Địa Trỉ</h3>
+                          <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="dia_chi"
+                          value="<%=room.dia_chi %>">
+                      </div>
+                  </div>
+                  <div class="row mt-4">
+                      <div class="col">
+                          <h3 class="card-title">Trưởng Phòng</h3>
+                          <input type="text" class="form-control" placeholder="Nhập họ và tên trưởng phòng"
+                              name="id_truong_phong"    value="<%=room.id_truong_phong %>">
+                      </div>
+                      <div class="col">
+                          <h3 class="card-title">Số Điện Thoại Phòng</h3>
+                          <input type="text" class="form-control" placeholder="Nhập số điện thoại"
+                              name="sdt_phong"  value="<%=room.sdt_phong %>">
+                      </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+              </form>
+
+          </div>
+      </div>
+      </div>
+    </div>
+  </section>

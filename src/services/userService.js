@@ -95,6 +95,55 @@ let deleteUser=(idUser)=>{
         }
     }));
 }
+let getInforUserById = (idUser)=>{
+    return new Promise((async (resolve, reject) => {
+        try {
+            let user = await User.getInforUserById(idUser);
+            if (user!=null) {
+                resolve(user[0]);
+            } else {
+                resolve(null);
+            }
+
+        } catch (e) {
+            resolve(null);
+        }
+    }));
+}
+let editInforUserById = (userInfor,idUser)=>{
+    return new Promise((async (resolve, reject) => {
+        try {
+            let user = await User.editInforUserById(userInfor.ho_ten,userInfor.password,idUser);
+            if (user!=null) {
+                resolve(true);
+            } else {
+                resolve(null);
+            }
+
+        } catch (e) {
+            resolve(null);
+        }
+    }));
+}
+
+
+let editInforUserByIdForAdmin = (userInfor,idUser)=>{
+    return new Promise((async (resolve, reject) => {
+        try {
+            let user = await User.editInforUserByIdForAdmin(userInfor.ho_ten, userInfor.ngay_sinh, userInfor.goi_tinh,userInfor.email, userInfor.password,idUser);
+            if (user!=null) {
+                resolve(true);
+            } else {
+                resolve(null);
+            }
+
+        } catch (e) {
+            resolve(null);
+        }
+    }));
+}
+
+
 module.exports = {
     getalluser: getalluser,
     checkuserlogin: checkuserlogin,
@@ -102,4 +151,8 @@ module.exports = {
     addUser: addUser,
     deleteAllUser:deleteAllUser,
     deleteUser:deleteUser,
+    getInforUserById:getInforUserById,
+    editInforUserById:editInforUserById,
+    editInforUserByIdForAdmin:editInforUserByIdForAdmin
+
 }

@@ -13,9 +13,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 viewEngine(app);
 initWebRoutes(app);
-let port = 8081 ;
-app.listen(port, () => {
-    console.log("Backend Nodejs is runing on the port : " + port)
-})
+// let port =  ;
+// app.listen(8081, () => {
+//     console.log("Backend Nodejs is runing on the port : " + 8081)
+// })
 
 

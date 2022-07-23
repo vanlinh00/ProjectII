@@ -1,0 +1,205 @@
+<% extend("../mainuser.ejs") %>
+    <section class="content ">
+        <div class="container-fluid ">
+            <div class="row ">
+                <div class="col-md-3  mt-5 ">
+
+                    <div class="direct-chat-messages">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar"
+                                    class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Brad Diesel
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+             
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
+                                    class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        John Pierce
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+        
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar"
+                                    class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Nora Silvester
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+
+                        
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar"
+                                    class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Nora Silvester
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                      
+                    </div>
+                  
+                </div>
+                <div class="col-md-9 mt-3 ">
+                    <div class="card direct-chat direct-chat-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Direct Chat</h3>
+
+                            <div class="card-tools">
+                                <span title="3 New Messages" class="badge badge-primary">3</span>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" title="Contacts"
+                                    data-widget="chat-pane-toggle">
+                                    <i class="fas fa-comments"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages  " id="messagesQLVB">
+
+                                <!-- Message to the right -->
+                                <div class="direct-chat-msg right">
+                                    <!-- <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
+                                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
+                                    </div> -->
+                                    <!-- /.direct-chat-infos -->
+                                    <!-- <img class="direct-chat-img" src="dist/img/user3-128x128.jpg"
+                                        alt="message user image"> -->
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">
+                                        You better believe it!
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+
+                                <!-- Message. Default to the left -->
+                                <div class="direct-chat-msg">
+                                    <!-- <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
+                                        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
+                                    </div> -->
+                                    <!-- /.direct-chat-infos -->
+                                    <!-- <img class="direct-chat-img" src="dist/img/user1-128x128.jpg"
+                                        alt="message user image"> -->
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">
+                                        Working with AdminLTE on a great new app! Wanna join?
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+
+                            </div>
+                            <!--/.direct-chat-messages-->
+
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <form action="#" method="post">
+                                <div class="input-group">
+                                    <input type="text" name="message" placeholder="Type Message ..."
+                                        class="form-control">
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-primary">Send</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card-footer-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+
+        const socket = io();
+
+        const messages = document.querySelector('#messagesQLVB');
+
+        const chatItem = document.createElement('div');
+
+        let addClass = ['direct-chat-msg'];
+        chatItem.classList.add(...addClass);
+
+
+        const chatItem2 = document.createElement('div');
+
+        let addClass2 = ['direct-chat-infos', 'clearfix'];
+        chatItem2.classList.add(...addClass2);
+
+
+        const directChat = document.createElement('div');
+        let addClass3 = ['direct-chat-text'];
+        directChat.classList.add(...addClass3);
+
+
+        const newContent = document.createTextNode("hihihhihihihih");
+        directChat.appendChild(newContent);
+
+
+        // const img = document.createElement("img");
+        // img.setAttribute("src", "dist/img/user1-128x128.jpg");
+        // img.setAttribute("alt", "message user image");
+        // let classesToimg = ['direct-chat-img'];
+        // img.classList.add(...classesToimg);
+
+        chatItem.appendChild(directChat);
+        chatItem.appendChild(chatItem2);
+
+        messages.appendChild(chatItem);
+        // chatItem.appendChild(img);
+
+
+    </script>

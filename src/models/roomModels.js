@@ -7,7 +7,7 @@ const Room = function (user) {
     this.linkavt = user.linkavt_user;
     this.listidblock = user.list_id_block;
 }
-Room.addRoom = (dataNew)=>{
+Room.addRoom = (dataNew) => {
     return new Promise((async (resolve, reject) => {
         try {
             db.query("INSERT INTO phong_ban SET ?", dataNew, function (err, res) {
@@ -42,12 +42,12 @@ Room.getAllRoom = () => {
 Room.getUserByIdRoom = (id) => {
     return new Promise((async (resolve, reject) => {
         try {
-         
+
             db.query('SELECT user.id AS id, user.ho_ten AS ho_ten, user.goi_tinh AS goi_tinh , user.ngay_sinh AS ngay_sinh, chuc_vu.name AS chuc_vu FROM user JOIN chuc_vu ON user.chuc_vu = chuc_vu.id WHERE id_phong_ban = ?', id, (err, res) => {
                 if (err) {
                     resolve(null);
                 } else {
-                  //  console.log('Check phone number successfully');
+                    //  console.log('Check phone number successfully');
                     resolve(res);
                 }
             })
@@ -56,8 +56,8 @@ Room.getUserByIdRoom = (id) => {
         }
     }));
 };
-Room.deleteRoom = (id)=>{
-   
+Room.deleteRoom = (id) => {
+
     return new Promise((async (resolve, reject) => {
         try {
             db.query(`DELETE FROM phong_ban WHERE id = '${id}'`, (err, res) => {
@@ -72,4 +72,40 @@ Room.deleteRoom = (id)=>{
         }
     }));
 }
+
+Room.getRoomById = (id) => {
+    return new Promise((async (resolve, reject) => {
+        try {
+            db.query(`SELECT * FROM phong_ban WHERE id ='${id}'`, function (err, user) {
+                if (err) {
+                    resolve(null);
+                } else {
+                    resolve(user);
+                }
+            });
+        } catch (e) {
+            resolve(null);
+        }
+    }));
+};
+
+Room.editRoomByid = (ma_phong, ten_phong, so_can_bo, dia_chi, id_truong_phong, sdt_phong, id) => {
+    return new Promise((async (resolve, reject) => {
+        try {
+            //    let user = await roomModel.editRoomByid(room.ma_phong,room.ten_phong,room.so_can_bo,room.dia_chi,room.id_truong_phong,room.sdt_phong,IdRoom);
+            db.query("UPDATE phong_ban SET ma_phong = ?, ten_phong = ? ,so_can_bo =?, dia_chi=? , id_truong_phong = ?,sdt_phong = ? WHERE id = ?", [ma_phong, ten_phong, so_can_bo, dia_chi, id_truong_phong, sdt_phong, id],
+                (err, res) => {
+                    if (err) {
+                        resolve(null);
+                    } else {
+                        resolve(res);
+                    }
+                })
+
+        } catch (e) {
+            reject(e);
+        }
+    }));
+}
+
 module.exports = Room;

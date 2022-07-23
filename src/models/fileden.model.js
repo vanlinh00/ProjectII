@@ -310,5 +310,20 @@ File.deleteIdXulyVB = (id) => {
     }));
 };
 
+File.getVanBanDenByName = (nameText)=>{
+    return new Promise((async (resolve, reject) => {
+        try {
+            db.query(`SELECT base_document.id as id, base_document.ten_vb as ten_vb, category.ten as name_category, base_document.nguoi_gui_den as nguoi_gui_den  FROM base_document JOIN category ON base_document.id_category = category.id WHERE base_document.ten_vb = '${nameText}'`, (err, res) => {
+                if (err) {
+                    console.log('tai sao loi o day');
+                } else {
+                    resolve(res);
+                }
+            })
+        } catch (e) {
+            reject(e);
+        }
+    }));
+}
 
 module.exports = File;

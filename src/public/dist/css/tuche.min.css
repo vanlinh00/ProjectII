@@ -20,6 +20,14 @@
     user-select: none;
   }
   
+  .searchButton {
+    text-align: center;
+ 
+    margin: 90px 8px 10px 480px; 
+
+  }
+
+  
   /* Hide the browser's default radio button */
   .containerplvb input {
     position: absolute;

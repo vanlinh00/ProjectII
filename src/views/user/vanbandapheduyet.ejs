@@ -1,16 +1,16 @@
 <% extend("../mainuser.ejs") %>
 
-<script>
-  var getTest = "<%= message  %>";
-  if (getTest.length != 0) {
+  <script>
+    var getTest = "<%= message  %>";
+    if (getTest.length != 0) {
+      $(document).ready(function () {
+        $("#myModal").modal('show');
+
+      });
+    }
+
+
     $(document).ready(function () {
-      $("#myModal").modal('show');
-
-    });
-  }
-
-  
-  $(document).ready(function () {
       $(".delete-vbden").click(function () {
 
         if (!confirm('Bạn có muốn xóa văn bản này không?')) {
@@ -35,7 +35,7 @@
 
     });
 
-</script>
+  </script>
 
   <section class="content">
 
@@ -46,7 +46,7 @@
             <div class="card-header">
               <h3 class="card-title">VĂN BẢN ĐÃ PHÊ DUYỆT</h3>
             </div>
-           
+
             <!-- /.card-header -->
             <p1 id="vbcpdtitile">TẤT CẢ VĂN BẢN</p1>
             <div class="card-body">
@@ -76,34 +76,33 @@
                       <td>
                         <%=data.nguoi_gui_den%>
                       </td>
-                  
+
                       <td>
                         <%=data.category%>
                       </td>
-                        
+
                       <td>
                         <%=data.trang_thai%>
                       </td>
 
                       <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"  href="/vanbanden/vanbandapheduyet/lichsupheduyet?id=<%=data.id%>">
-                            <i class="fas fa-folder">
-                            </i>
-                            Xem Lịch Sử
+                        <a class="btn btn-primary btn-sm" href="/vanbanden/vanbanchopheduyet/xemvanban?id=<%=data.id%>">
+                          <i class="fas fa-folder">
+                          </i>
+                          Xem Lịch Sử
                         </a>
-             
                         <a class="btn btn-danger btn-sm delete-vbden" data-deletedata="<%= data.id %>" href="#">
                           <i class="fas fa-trash">
                           </i>
                           Xóa Bỏ
                         </a>
 
-                    </td>
+                      </td>
                     </tr>
                     <% i++; }) %>
                       <% } else{ %>
                         <tr>
-                          
+
                         </tr>
                         <% } %>
 
@@ -132,7 +131,9 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <p><%= message  %></p>
+          <p>
+            <%= message %>
+          </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>

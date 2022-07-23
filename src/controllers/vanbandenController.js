@@ -49,22 +49,13 @@ let vanbanchophanloai = async (req, res) => {
 let vanbanchophanloaiphanloai = async (req, res) => {
     let fileVanbanDen = await filedenService.checkFileById(req.query.id);
     let namefileworld = fileVanbanDen.name;
-    // const extractor = new WordExtractor();
-    // const extracted = extractor.extract("../Project2/uploads/" + namefileworld);
-    // extracted.then(function (doc) {
-    //     var fileVanBan = {
-    //         id: fileVanbanDen.id,
-    //         nguoi_gui_den: fileVanbanDen.nguoi_gui_den,
-    //         name: fileVanbanDen.tenvb,
-    //         contentvb: doc.getBody(),
-    //     }
     var fileVanBan = {
-                id: fileVanbanDen.id,
-                nguoi_gui_den: fileVanbanDen.nguoi_gui_den,
-                name: fileVanbanDen.tenvb,
-            }
-        res.render("user/vanbanchophanloaiphanloai", { user: req.user,fileVanBan});
-   // });
+        id: fileVanbanDen.id,
+        nguoi_gui_den: fileVanbanDen.nguoi_gui_den,
+        name: fileVanbanDen.tenvb,
+        namefileworld:namefileworld,
+    }
+    res.render("user/vanbanchophanloaiphanloai", { user: req.user, fileVanBan });
 }
 let postvanbanchophanloaiphanloai = async (req, res) => {
     if (req.body.radio != null) {
@@ -148,31 +139,31 @@ let vanbanchopheduyet = async (req, res) => {
     }
 */
 
-vanBanChoPheDuyet = await filedenService.getVanBanChoPheDuyetByIdcategory(idLoaiVanBanDen);
+    vanBanChoPheDuyet = await filedenService.getVanBanChoPheDuyetByIdcategory(idLoaiVanBanDen);
 
-idChuVUCanPheDuyet = await filedenService.checkIdChucVUCanPheDuyet(idLoaiVanBanDen);
+    idChuVUCanPheDuyet = await filedenService.checkIdChucVUCanPheDuyet(idLoaiVanBanDen);
 
-for (let i = 0; i < vanBanChoPheDuyet.length; i++) {
+    for (let i = 0; i < vanBanChoPheDuyet.length; i++) {
 
-    var checkIdXuDaXuLyVanBanChua = await filedenService.checkIdXuDaXuLyVanBanChua(vanBanChoPheDuyet[i].id, req.user.id);
+        var checkIdXuDaXuLyVanBanChua = await filedenService.checkIdXuDaXuLyVanBanChua(vanBanChoPheDuyet[i].id, req.user.id);
 
-    if (checkIdXuDaXuLyVanBanChua == 2 || checkIdXuDaXuLyVanBanChua == 3) {
+        if (checkIdXuDaXuLyVanBanChua == 2 || checkIdXuDaXuLyVanBanChua == 3) {
 
-        var idChuVuCuoiCungdaPheDuyet = await filedenService.idChucVuCuoiCungdaPheDuyet(vanBanChoPheDuyet[i].id);
+            var idChuVuCuoiCungdaPheDuyet = await filedenService.idChucVuCuoiCungdaPheDuyet(vanBanChoPheDuyet[i].id);
 
-        if (idChuVuCuoiCungdaPheDuyet == 0 && req.user.chuc_vu == idChuVUCanPheDuyet[0]) {
-            vanBanDaLoc.push(vanBanChoPheDuyet[i]);
-        }
-        else if (idChuVuCuoiCungdaPheDuyet != 0) {
-            var idChuVUCanPhuyetTieptheo = await filedenService.idChuVUCanPhuyetTieptheo(idChuVUCanPheDuyet, idChuVuCuoiCungdaPheDuyet);
-            if (idChuVUCanPhuyetTieptheo == req.user.chuc_vu) {
-
+            if (idChuVuCuoiCungdaPheDuyet == 0 && req.user.chuc_vu == idChuVUCanPheDuyet[0]) {
                 vanBanDaLoc.push(vanBanChoPheDuyet[i]);
             }
-        }
+            else if (idChuVuCuoiCungdaPheDuyet != 0) {
+                var idChuVUCanPhuyetTieptheo = await filedenService.idChuVUCanPhuyetTieptheo(idChuVUCanPheDuyet, idChuVuCuoiCungdaPheDuyet);
+                if (idChuVUCanPhuyetTieptheo == req.user.chuc_vu) {
 
+                    vanBanDaLoc.push(vanBanChoPheDuyet[i]);
+                }
+            }
+
+        }
     }
-}
     res.render("user/vanbanchopheduyet.ejs", {
         vanBanChoPheDuyet: vanBanDaLoc,
         user: req.user,
@@ -184,7 +175,7 @@ for (let i = 0; i < vanBanChoPheDuyet.length; i++) {
 let vanbanchopheduyetpheduyet = async (req, res) => {
     let fileVanbanDen = await filedenService.checkFileById(req.query.id);
 
-    
+
     let allXyLyVanBan = await filedenService.getAllUserDaXuLyVanBanByIdVanBanWithChucVu(req.query.id);
 
     let namefileworld = fileVanbanDen.name;
@@ -305,10 +296,9 @@ let xoaVanBanDen = async (req, res) => {
 
 let getXemVanBan = async (req, res) => {
 
-    console.log(req);
     let fileVanbanDen = await filedenService.checkFileById(req.query.id);
 
-    
+
     let allXyLyVanBan = await filedenService.getAllUserDaXuLyVanBanByIdVanBanWithChucVu(req.query.id);
 
 
@@ -325,13 +315,34 @@ let getXemVanBan = async (req, res) => {
     //         contentvb: doc.getBody(),
     //     }
 
-        res.render("user/xemvb", { user: req.user, fileVanbanDen,allXyLyVanBan });
+    res.render("user/xemvb", { user: req.user, fileVanbanDen, allXyLyVanBan });
 
-  //  });
+    //  });
 }
 
+let postTimKiemVanBan = async (req, res) => {
 
+   // console.log(req.body);
 
+    var vanBanChoPheDuyet = [];
+    
+    if(req.body.ten_vb!=null)
+    {
+        var allFileDenByName= await filedenService.getVanBanDenByName(req.body.ten_vb);
+        
+        console.log(allFileDenByName);
+        vanBanChoPheDuyet = allFileDenByName;
+    }
+    res.render("user/timkiemvanban", { user: req.user, vanBanChoPheDuyet });
+
+}
+let timkiemvanban = async (req, res) => {
+
+    var vanBanChoPheDuyet = [];
+
+    res.render("user/timkiemvanban", { user: req.user, vanBanChoPheDuyet });
+
+}
 module.exports = {
     themvanbanden: themvanbanden,
     themvanbandentc: themvanbandentc,
@@ -345,5 +356,6 @@ module.exports = {
     vanBanDaPheDuyet: vanBanDaPheDuyet,
     xoaVanBanDen: xoaVanBanDen,
     getXemVanBan: getXemVanBan,
-
+    timkiemvanban: timkiemvanban,
+    postTimKiemVanBan: postTimKiemVanBan,
 }
