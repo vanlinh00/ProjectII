@@ -54,24 +54,29 @@
                   </a>
                 </li>
                 <%} else { %>
+                  <% if (user.chuc_vu==2) { %>
                   <li class="nav-item">
                     <a href="/vanbanden/vanbanchophanloai" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Văn bản chờ phân loại</p>
                     </a>
-                  </li>
+                  </li>    
+                      <%} else { %>
+
                   <li class="nav-item">
                     <a href="/vanbanden/vanbanchopheduyet" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Văn bản chờ phê duyệt</p>
                     </a>
                   </li>
+                  <% } %>
                   <li class="nav-item">
                     <a href="/vanbanden/vanbandapheduyet" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Văn bản đã phê duyệt</p>
                     </a>
                   </li>
+               
                   <% } %>
 
 
